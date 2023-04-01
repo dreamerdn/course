@@ -1,0 +1,30 @@
+version: '3'
+services:
+  database:
+    image: mysql:latest
+    command: "--innodb_use_native_aio=0"
+    volumes:
+      - "~/Documents/containers-data/car-rental/data:/var/lib/mysql:rw"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: car_rental
+      MYSQL_USER: root
+      MYSQL_PASSWORD: new_password
+
+
+#      MYSQL_ROOT_PASSWORD: new_password
+#      MYSQL_DATABASE: car_rental
+#      MYSQL_USER: drmrdn
+#      MYSQL_PASSWORD: qwert123
+
+    ports:
+      - "3303:3306"
+
+
+  web-server:
+    build: ..
+    ports:
+    - "8888:8080"
+    restart: always
+    depends_on:
+      - database

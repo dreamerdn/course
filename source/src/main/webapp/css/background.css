@@ -1,5 +1,5 @@
 body {
-    background: url("/img/background.jpg") no-repeat center center fixed;
+    background-color: cornflowerblue;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;

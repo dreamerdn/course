@@ -26,5 +26,17 @@ public class ParameterName {
     public final static String CAR_ID = "car_id";
     public final static String START_DATE = "start_date";
     public final static String END_DATE = "end_date";
-    public static final String CAR_MAKES = "car_makes";
+
+
+    public static final String YEAR = "year";
+    public static final String MAKE_ID = "make_id";
+    public static final String MODEL = "model";
+    public static final String REGISTRATION_NUMBER = "registration_number";
+    public static final String MILEAGE = "mileage";
+    public static final String GEARBOX_TYPE = "gearbox_type";
+    public static final String PRICE_PER_DAY = "price_per_day";
+    public static final String PRICE_PER_DAY_2 = "price_per_day_2";
+
+    public static final String CAR = "car";
+
 }

@@ -19,12 +19,21 @@ public enum CommandProvider {
                 new RequiredLoginDecorator(new AddClientCommand()),
                 new RequiredLoginDecorator(new ToClientProfileCommand()),
                 new RequiredLoginDecorator(new UpdateClientProfileCommand()),
+
                 new RequiredLoginDecorator(new ToAddOrderCommand()),
                 new RequiredLoginDecorator(new AddOrderCommand()),
                 new RequiredLoginDecorator(new ToOrdersList()),
                 new RequiredLoginDecorator(new RemoveOrderCommand()),
-                new RequiredLoginDecorator(new ToCarsListCommand()),
-                new RequiredLoginDecorator(new ToPrintCommand()));
+
+                new RequiredLoginDecorator(new ToPrintCommand()),
+
+                new RequiredLoginDecorator(new ToCarsList()),
+                new RequiredLoginDecorator(new ToAddCarCommand()),
+                new RequiredLoginDecorator(new AddCarCommand()),
+                new RequiredLoginDecorator(new ToCarProfileCommand()),
+                new RequiredLoginDecorator(new UpdateCarProfileCommand()),
+                new RequiredLoginDecorator(new RemoveCarCommand())
+        );
     }
 
     public Optional<Command> findCommand(String commandName) {

@@ -1,8 +1,6 @@
 package command;
 
-import entity.Client;
-import entity.Employee;
-import entity.Order;
+import entity.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
@@ -60,5 +58,22 @@ public enum EntityBuilder {
         return Optional.of(order);
     }
 
+    public Optional<Car> buildCar(HttpServletRequest request) {
+        Car car = new Car();
+        try {
+            car.setYear(Integer.parseInt(request.getParameter(ParameterName.YEAR)));
+            car.setMakeId(Integer.parseInt(request.getParameter(ParameterName.MAKE_ID)));
+            car.setModel(request.getParameter(ParameterName.MODEL));
+            car.setRegistrationNumber(request.getParameter(ParameterName.REGISTRATION_NUMBER));
+            car.setMileage(Integer.parseInt(request.getParameter(ParameterName.MILEAGE)));
+            car.setGearboxType(Integer.parseInt(request.getParameter(ParameterName.GEARBOX_TYPE)));
+            car.setPricePerDay(Float.parseFloat(request.getParameter(ParameterName.PRICE_PER_DAY)));
+            car.setPricePerDay2(Float.parseFloat(request.getParameter(ParameterName.PRICE_PER_DAY_2)));
+        } catch (NumberFormatException e) {
+            return Optional.empty();
+        }
+
+        return Optional.of(car);
+    }
 
 }

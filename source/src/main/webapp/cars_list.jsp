@@ -23,7 +23,7 @@
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
     <link href="<c:url value="/css/background.css" />" rel="stylesheet">
     <link href="<c:url value="/css/nav.css" />" rel="stylesheet">
-    <link href="<c:url value="/css/client_list.css" />" rel="stylesheet">
+    <link href="<c:url value="/css/car_list.css" />" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -53,19 +53,28 @@
                     </form>
                 </div>
             </li>
+            <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCars" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Машины
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownCars">
+                    <form class="form-inline my-2 my-lg-0 dropdown-item" action="<c:url value="/car_rental"/>" method="GET">
+                        <input type="hidden" name="command" value="to_cars_list"/>
+                        <button type="submit" class="btn btn-link btn-thin dropdown-item">Список машин</button>
+                    </form>
+                    <form class="form-inline my-2 my-lg-0 dropdown-item" action="<c:url value="/car_rental"/>" method="GET">
+                        <input type="hidden" name="command" value="to_add_car"/>
+                        <button type="submit" class="btn btn-link btn-thin dropdown-item">Добавить машину</button>
+                    </form>
+                </div>
+            </li>
             <li class="nav-item">
                 <form class="form-inline my-2 my-lg-0" action="<c:url value="/car_rental"/>" method="GET">
                     <input type="hidden" name="command" value="to_orders_list"/>
                     <button type="submit" class="btn btn-link nav-link active">Заказы</button>
                 </form>
             </li>
-            <li class="nav-item">
-                <form class="form-inline my-2 my-lg-0" action="<c:url value="/car_rental"/>" method="GET">
-                    <input type="hidden" name="command" value="to_cars_list"/>
-                    <button type="submit" class="btn btn-link nav-link active">Машины</button>
-                </form>
-            </li>
-
         </ul>
         <form class="form-inline my-2 my-lg-0" action="<c:url value="/car_rental"/>" method="GET">
             <input type="hidden" name="command" value="logout"/>
@@ -73,16 +82,15 @@
         </form>
     </div>
 </nav>
-<div class="card bg-dark text-white form-client-list">
+<div class="card bg-dark text-white form-car-list">
     <div class="card-header">
         Список машин
     </div>
     <div class="card-body">
-        <table class="table table-light table-stripped" id="clients">
+        <table class="table table-light table-stripped" id="cars">
             <thead class="thead-dark">
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Марка</th>
                 <th scope="col">Модель</th>
                 <th scope="col">Год</th>
                 <th scope="col">Пробег</th>
@@ -96,12 +104,12 @@
             <c:forEach items="${cars}" var="item" varStatus="currentNumber">
                 <tr>
                     <th scope="row"><c:out value="${currentNumber.count}"/></th>
-                    <td><c:out value="${car_makes[item.makeId - 1].name}"/></td>
+
                     <td><c:out value="${item.model}"/></td>
                     <td><c:out value="${item.year}"/></td>
                     <td><c:out value="${item.mileage}"/></td>
                     <td>
-                        <c:if test="${item.gearboxType == 0}">
+                        <c:if test="${item.gearboxType == 2}">
                             Ручная
                         </c:if>
                         <c:if test="${item.gearboxType == 1}">
@@ -110,6 +118,23 @@
                     </td>
                     <td><c:out value="${item.pricePerDay}"/></td>
                     <td><c:out value="${item.pricePerDay2}"/></td>
+
+                    <td>
+                        <form class="form-inline my-0 my-lg-0" action="<c:url value="/car_rental"/>" method="POST">
+                            <input type="hidden" name="command" value="to_car_profile"/>
+                            <input type="hidden" name="car_id" value="${item.id}">
+                            <button type="submit" class="btn btn-dark">Профиль</button>
+                        </form>
+                    </td>
+
+                    <td>
+                    <form class="form-inline my-0 my-lg-0" action="<c:url value="/car_rental"/>" method="POST">
+                        <input type="hidden" name="command" value="remove_car"/>
+                        <input type="hidden" name="car_id" value="${item.id}">
+                        <button type="submit" class="btn btn-dark">Удалить</button>
+                    </form>
+                    </td>
+
                 </tr>
             </c:forEach>
             </tbody>
@@ -117,11 +142,13 @@
 
 
     </div>
+
 </div>
+
 </body>
 <script>
     $(document).ready(function () {
-        $('#clients').dataTable();
+        $('#cars').dataTable();
     });
 </script>
 </html>

@@ -20,8 +20,8 @@
     <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
 </head>
 
-<body>
-    <div class="card text-white bg-dark login-form">
+<body style="background-color: #aec3ef; font-family: Gill Sans, sans-serif">
+    <div class="card text-white login-form" style="background-color: #7062ad; width: 50rem; margin: 250px;">
         <div class="card-header">
             Войти в систему
         </div>

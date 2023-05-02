@@ -24,6 +24,24 @@
     <link href="<c:url value="/css/add_client.css" />" rel="stylesheet">
     <link href="<c:url value="/css/nav.css" />" rel="stylesheet">
     <link href="<c:url value="/css/background.css" />" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffe9f1;
+            color: #a743b3;
+        }
+        .navbar {
+            background-color: #a743b3;
+        }
+        .navbar-brand {
+            color: #ffe9f1;
+        }
+        .nav-link {
+            color: #ffe9f1;
+        }
+        .navbar-toggler-icon {
+            background-color: #ffe9f1;
+        }
+    </style>
     <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
 </head>
 <body>
@@ -52,19 +70,28 @@
                     </form>
                 </div>
             </li>
+            <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCars" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Машины
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownCars">
+                    <form class="form-inline my-2 my-lg-0 dropdown-item" action="<c:url value="/car_rental"/>" method="GET">
+                        <input type="hidden" name="command" value="to_cars_list"/>
+                        <button type="submit" class="btn btn-link btn-thin dropdown-item">Список машин</button>
+                    </form>
+                    <form class="form-inline my-2 my-lg-0 dropdown-item" action="<c:url value="/car_rental"/>" method="GET">
+                        <input type="hidden" name="command" value="to_add_car"/>
+                        <button type="submit" class="btn btn-link btn-thin dropdown-item">Добавить машину</button>
+                    </form>
+                </div>
+            </li>
             <li class="nav-item">
                 <form class="form-inline my-2 my-lg-0" action="<c:url value="/car_rental"/>" method="GET">
                     <input type="hidden" name="command" value="to_orders_list"/>
                     <button type="submit" class="btn btn-link nav-link active">Заказы</button>
                 </form>
             </li>
-            <li class="nav-item">
-                <form class="form-inline my-2 my-lg-0" action="<c:url value="/car_rental"/>" method="GET">
-                    <input type="hidden" name="command" value="to_cars_list"/>
-                    <button type="submit" class="btn btn-link nav-link active">Машины</button>
-                </form>
-            </li>
-
         </ul>
         <form class="form-inline my-2 my-lg-0" action="<c:url value="/car_rental"/>" method="GET">
             <input type="hidden" name="command" value="logout"/>
@@ -151,5 +178,10 @@
 </div>
 </body>
 </html>
-
+<style>
+    body {
+        background-color: #F8D7DA;
+        color: #800080;
+    }
+</style>
 <script src="<c:url value="/js/common.js" />"></script>
